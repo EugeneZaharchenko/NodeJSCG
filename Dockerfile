@@ -1,19 +1,23 @@
 FROM node:20-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Create a package.json with basic configuration
-RUN echo '{"name":"docker-node-app","version":"1.0.0","main":"index.js","scripts":{"start":"node index.js"},"dependencies":{"express":"^4.18.2"}}' > package.json
+# Install nodemon globally
+RUN npm install -g nodemon
+
+# Copy package files
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy all local files to the container
+# Copy app files
 COPY . .
 
-# Expose the port your app runs on
 EXPOSE 3000
 
-# Command to run the application
-CMD ["npm", "start"]
+# Use legacy watch mode for better performance in Docker
+ENV CHOKIDAR_USEPOLLING=true
+
+# Run nodemon with specific Docker settings
+CMD ["nodemon", "--legacy-watch", "index.js"]
