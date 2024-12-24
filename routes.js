@@ -5,7 +5,9 @@ const router = express.Router();
 // Home route
 router.get("/", (req, res) => {
   res.setHeader("Custom-Header", "my-header");
-  res.send("Hello from Node.js Docker container! Try changing HO-JHO ))).");
+  res.send(
+    "Hello from Node.js Docker container! Try changing HO-HO-HOH!! )))."
+  );
 });
 
 // Synchronous message route
