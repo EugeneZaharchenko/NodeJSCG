@@ -3,6 +3,9 @@ const fs = require("fs");
 const router = express.Router();
 const path = require("path");
 
+const rootDir = require("../util/path");
+const adminData = require("./admin");
+
 // Home route
 // router.get("/", (req, res) => {
 //   res.setHeader("Custom-Header", "my-header");
@@ -10,7 +13,8 @@ const path = require("path");
 // });
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../views", "shop.html"));
+  console.log(`Products: ${adminData.products.map((p) => p.title)}`);
+  res.sendFile(path.join(rootDir, "views", "shop.html"));
 });
 
 // Synchronous message route
