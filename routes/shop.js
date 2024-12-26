@@ -1,11 +1,16 @@
 const express = require("express");
 const fs = require("fs");
 const router = express.Router();
+const path = require("path");
 
 // Home route
+// router.get("/", (req, res) => {
+//   res.setHeader("Custom-Header", "my-header");
+//   res.send("Hello from Node.js Docker container! Try changing HO-HO-ho!! ))");
+// });
+
 router.get("/", (req, res) => {
-  res.setHeader("Custom-Header", "my-header");
-  res.send("Hello from Node.js Docker container! Try changing HO-HO-ho!! ))");
+  res.sendFile(path.join(__dirname, "../views", "shop.html"));
 });
 
 // Synchronous message route
