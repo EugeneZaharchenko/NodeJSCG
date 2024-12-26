@@ -14,7 +14,12 @@ const adminData = require("./admin");
 
 router.get("/", (req, res) => {
   console.log(`Products: ${adminData.products.map((p) => p.title)}`);
-  res.sendFile(path.join(rootDir, "views", "shop.html"));
+  // res.sendFile(path.join(rootDir, "views", "shop.html"));
+  res.render("shop", {
+    prods: adminData.products,
+    pageTitle: "My Pug Shop )",
+    path: "/",
+  });
 });
 
 // Synchronous message route
