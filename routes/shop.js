@@ -12,13 +12,15 @@ const adminData = require("./admin");
 //   res.send("Hello from Node.js Docker container! Try changing HO-HO-ho!! ))");
 // });
 
-router.get("/", (req, res) => {
-  console.log(`Products: ${adminData.products.map((p) => p.title)}`);
-  // res.sendFile(path.join(rootDir, "views", "shop.html"));
+router.get("/", (req, res, next) => {
+  const products = adminData.products;
   res.render("shop", {
-    prods: adminData.products,
-    pageTitle: "My Pug Shop )",
+    prods: products,
+    pageTitle: "Shop",
     path: "/",
+    hasProducts: products.length > 0,
+    activeShop: true,
+    productCSS: true,
   });
 });
 
