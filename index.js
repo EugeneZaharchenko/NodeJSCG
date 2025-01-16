@@ -38,3 +38,5 @@ app.use((req, res, next) => {
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+// docker start -p 3000:3000 -v "${PWD}:/app" -v "/app/node_modules" my-nodejs-app
